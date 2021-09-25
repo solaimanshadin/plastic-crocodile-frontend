@@ -1,10 +1,8 @@
 import React from "react";
-import { useEffect } from "react";
 import { useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import { useQuery } from "react-query";
 import { useParams } from "react-router";
-import { queryClient } from "..";
 import ReactMapGL, { Marker } from "react-map-gl";
 
 const getDetails = async (id) => {
@@ -33,7 +31,7 @@ const DebrisDetails = () => {
             mapboxApiAccessToken={process.env.REACT_APP_MAP_TOKEN}
             {...viewport}
             {...data?.data}
-            // onViewportChange={(nextViewport) => setViewport(nextViewport)}
+            onViewportChange={(nextViewport) => setViewport(nextViewport)}
           >
             {data?.data?.latitude && (
               <Marker
