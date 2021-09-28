@@ -43,7 +43,7 @@ const Map = ({data, isLoading}) => {
         height="100%"
         mapStyle="mapbox://styles/mapbox/dark-v9"
         onViewportChange={setViewport}
-        mapboxApiAccessToken={process.env.REACT_APP_MAP_TOKEN}
+        mapboxApiAccessToken={'pk.eyJ1Ijoic29sYWltYW5zaGFkaW4iLCJhIjoiY2tiMmQyeXR1MDFucjJwbnhqYzFzOWR3eCJ9.12SNRcv0uF7VAxE2UGCnlA'}
       >
 
        {data?.length && <Pins data={data} onClick={setPopupInfo} /> }
