@@ -67,6 +67,18 @@ a{
 .pagination .disabled{
   cursor: not-allowed;
 }
+
+/* debris-card */
+.debris-card .card-img-overlay{
+  transform: scale(1, 0);
+  background-color: #00000075;
+  
+
+}
+.debris-card:hover .card-img-overlay{
+
+  transform: scale(1, 1);
+}
 @media screen and (min-width: 600px) {
   .layout {
     grid-template-columns: 1fr 5fr;

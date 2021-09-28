@@ -4,8 +4,19 @@ import DebrisDetails from "./page/DebrisDetails";
 import Layout from "./components/Layout";
 import Analytics from "./page/Analytics";
 import Collection from "./page/Collection";
+import { useEffect } from "react";
+import { queryClient } from ".";
+import { getDebrisData, getStatistics } from "./API";
 
 function App() {
+  
+
+  useEffect(() => {
+    queryClient.prefetchQuery(["debris", 1], () =>
+    getDebrisData({ page: 1 }));
+    queryClient.prefetchQuery(["detection-statistics", 7], getStatistics)
+  }, [])
+  
   return (
     <Router>
       <Layout>

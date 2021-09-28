@@ -4,12 +4,9 @@ import { Row } from "react-bootstrap";
 import { useQuery } from "react-query";
 import Debris from "../components/Debris";
 import Pagination from "react-js-pagination";
+import { getDebrisData } from "../API";
 
-const getDebrisData = async (params) => {
-  const result = await fetch(process.env.REACT_APP_BASE_URL + `/debris?perPage=8&page=${params.page}`);
-  const data = await result.json();
-  return data;
-};
+
 const Collection = () => {
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -31,7 +28,7 @@ const Collection = () => {
       <Pagination
           activePage={currentPage}
           itemsCountPerPage={8}
-          totalItemsCount={data?.total}
+          totalItemsCount={data?.total || 0}
           pageRangeDisplayed={5}
           onChange={e => setCurrentPage(e)}
         />

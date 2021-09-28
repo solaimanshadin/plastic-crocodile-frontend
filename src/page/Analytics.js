@@ -3,20 +3,15 @@ import { useQuery } from "react-query";
 import Chart from "../components/Chart/Chart";
 import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
+import { getStatistics } from "../API";
 
-const getStatistics = async (params) => {
-  const data = await fetch(
-    process.env.REACT_APP_BASE_URL + `/stats/detection-statistics`
-  );
-  const res = await data.json();
-  return res;
-};
+
 
 const Analytics = () => {
   // const []
 
   const [showForDays, setShowForDays] = useState(7);
-  const { data, isLoading } = useQuery(["detection-statistics"], getStatistics);
+  const { data, isLoading } = useQuery(["detection-statistics", showForDays], getStatistics);
 
   return (
     <div className="p-3">
@@ -26,7 +21,7 @@ const Analytics = () => {
       <div className="card mt-4">
         <div className="card-header row m-0 align-items-center justify-content-between">
           <div className="col-md-9">
-            <h6 className="w-50 m-0">Detection statistics</h6>
+            <h6 className="m-md-0">Detection statistics</h6>
           </div>
           <div className="col-md-3">
             <div className="d-flex align-items-center justify-content-md-end">
