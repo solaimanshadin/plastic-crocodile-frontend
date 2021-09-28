@@ -1,5 +1,4 @@
 import React from "react";
-import { useState } from "react";
 import { Card, Col } from "react-bootstrap";
 import { useQuery } from "react-query";
 import { useParams } from "react-router";
