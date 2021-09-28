@@ -33,7 +33,7 @@ const Map = ({data, isLoading}) => {
   const [viewport, setViewport] = useState({
     latitude: 21.184006,
     longitude: 92.048107,
-    zoom: 6,
+    zoom: 4,
     bearing: 0,
     pitch: 0,
   });

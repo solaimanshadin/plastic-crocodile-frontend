@@ -1,9 +1,8 @@
 import React from "react";
 import { useState } from "react";
-import { Card, Col, Container, Row } from "react-bootstrap";
+import { Card, Col } from "react-bootstrap";
 import { useQuery } from "react-query";
 import { useParams } from "react-router";
-import ReactMapGL, { Marker } from "react-map-gl";
 import Map from "../components/DebrisMap/Map";
 import { Link } from "react-router-dom";
 
@@ -14,13 +13,7 @@ const getDetails = async (id) => {
 };
 const DebrisDetails = () => {
   const { id } = useParams();
-  const [viewport, setViewport] = useState({
-    width: 400,
-    height: 400,
-    latitude: 37.7577,
-    longitude: -122.4376,
-    zoom: 9,
-  });
+ 
 
   const { data } = useQuery(["debris_details", id], () => getDetails(id));
 
