@@ -1,27 +1,26 @@
 import React from "react";
 import { useState } from "react";
-import { Container, Row } from "react-bootstrap";
 import { useQuery } from "react-query";
-import Debris from "../components/Debris";
+import Map from "../components/DebrisMap/Map";
 
 const getDebrisData = async (params) => {
-  const result = await fetch(process.env.REACT_APP_BASE_URL + "/debris", {params});
+  const result = await fetch(process.env.REACT_APP_BASE_URL + "/debris?perPage=999");
   const data = await result.json();
   return data;
 };
+
+
 const Home = () => {
   const [currentPage ] = useState(1);
 
-  const { data } = useQuery(["debris", currentPage], () => getDebrisData({page: currentPage}));
+  const { data, isLoading } = useQuery("debris_map", () => getDebrisData({page: currentPage}));
 
   return (
-    <Container>
-      <Row className="g-3 my-4">
-        {data?.data?.map((debris) => (
-          <Debris key={debris._id} {...debris} />
-        ))}
-      </Row>
-    </Container>
+    <div>
+      {/* <DebrisMap />
+       */}
+       <Map data={data?.data} isLoading={isLoading} />
+    </div>
   );
 };
 
