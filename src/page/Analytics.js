@@ -1,14 +1,9 @@
 import React, { useState } from "react";
 import { useQuery } from "react-query";
 import Chart from "../components/Chart/Chart";
-import "react-date-range/dist/styles.css";
-import "react-date-range/dist/theme/default.css";
 import { getStatistics } from "../API";
 
-
-
 const Analytics = () => {
-  // const []
 
   const [showForDays, setShowForDays] = useState(7);
   const { data, isLoading } = useQuery(["detection-statistics", showForDays], getStatistics);
