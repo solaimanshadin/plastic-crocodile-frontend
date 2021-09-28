@@ -1,9 +1,11 @@
 import React from "react";
 import { useState } from "react";
-import { Col, Container, Row } from "react-bootstrap";
+import { Card, Col, Container, Row } from "react-bootstrap";
 import { useQuery } from "react-query";
 import { useParams } from "react-router";
 import ReactMapGL, { Marker } from "react-map-gl";
+import Map from "../components/DebrisMap/Map";
+import { Link } from "react-router-dom";
 
 const getDetails = async (id) => {
   const result = await fetch(process.env.REACT_APP_BASE_URL + "/debris/" + id);
@@ -22,49 +24,30 @@ const DebrisDetails = () => {
 
   const { data } = useQuery(["debris_details", id], () => getDetails(id));
 
+  console.log("data", data);
   return (
-    <Container className="py-5">
-      <Row>
-        <Col md={6}></Col>
-        <Col md={6}>
-          <ReactMapGL
-            mapboxApiAccessToken={process.env.REACT_APP_MAP_TOKEN}
-            {...viewport}
-            {...data?.data}
-            onViewportChange={(nextViewport) => setViewport(nextViewport)}
-          >
-            {data?.data?.latitude && (
-              <Marker
-                longitude={data?.data?.longitude}
-                latitude={data?.data?.latitude}
-              >
-                  {" ."}
-                <svg
-                  width="30"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-                  />
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-                  />
-                </svg>
-              </Marker>
-            )}
-          </ReactMapGL>
+    <div className="">
+      <div className="d-flex flex-md-row">
+        <Col md={6} className="p-4 ">
+          <div className="rounded shadow-sm p-3 mb-4">
+            <Link to="/collection" className="btn btn-success">
+              Go Back
+            </Link>
+          </div>
+          <Card className="border-0">
+            <Card.Img variant="top" src={data?.data?.image} />
+            <Card.Body>
+              <Card.Title>{data?.data?.note}</Card.Title>
+              <Card.Text>Detected At: {data?.data?.created_at}</Card.Text>
+              <Card.Text>Depth: {data?.data?.depth}</Card.Text>
+            </Card.Body>
+          </Card>
         </Col>
-      </Row>
-    </Container>
+        <Col md={6}>
+          <Map data={data?.data} />
+        </Col>
+      </div>
+    </div>
   );
 };
 

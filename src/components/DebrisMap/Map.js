@@ -45,7 +45,7 @@ const Map = ({data, isLoading}) => {
         {...viewport}
         width="100%"
         height="100%"
-        mapStyle="mapbox://styles/mapbox/dark-v9"
+        mapStyle="mapbox://styles/mapbox/basic-v8"
         onViewportChange={setViewport}
         mapboxApiAccessToken={'pk.eyJ1Ijoic29sYWltYW5zaGFkaW4iLCJhIjoiY2tiMmQyeXR1MDFucjJwbnhqYzFzOWR3eCJ9.12SNRcv0uF7VAxE2UGCnlA'}
       >
