@@ -16,10 +16,10 @@ function App() {
           <Route path="/analytics">
             <Analytics />
           </Route>
-          <Route path="/collection">
+          <Route exact path="/collection">
             <Collection />
           </Route>
-          <Route path="/debris/:id">
+          <Route path="/collection/:id">
             <DebrisDetails />
           </Route>
         </Switch>
