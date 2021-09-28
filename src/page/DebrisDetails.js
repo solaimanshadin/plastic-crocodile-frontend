@@ -4,7 +4,7 @@ import { useQuery } from "react-query";
 import { useParams } from "react-router";
 import Map from "../components/DebrisMap/Map";
 import { Link } from "react-router-dom";
-
+import { HiOutlineArrowNarrowLeft } from 'react-icons/hi'
 const getDetails = async (id) => {
   const result = await fetch(process.env.REACT_APP_BASE_URL + "/debris/" + id);
   const data = await result.json();
@@ -23,7 +23,7 @@ const DebrisDetails = () => {
         <Col md={6} className="p-4 ">
           <div className="rounded shadow-sm p-3 mb-4">
             <Link to="/collection" className="btn btn-success">
-              Go Back
+             <HiOutlineArrowNarrowLeft /> Go Back
             </Link>
           </div>
           <Card className="border-0">
@@ -36,7 +36,12 @@ const DebrisDetails = () => {
           </Card>
         </Col>
         <Col md={6}>
-          <Map data={data?.data} />
+          <Map 
+            data={data?.data && [data?.data]} 
+            latitude={data?.data?.latitude} 
+            longitude={data?.data?.longitude} 
+            zoom={6}
+          />
         </Col>
       </div>
     </div>

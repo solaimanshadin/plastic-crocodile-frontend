@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import MapGL, {
   Popup,
   NavigationControl,
@@ -29,14 +29,17 @@ const scaleControlStyle = {
   left: 0,
   padding: "10px",
 };
-const Map = ({data, isLoading}) => {
+const Map = ({data, isLoading, latitude=21.184006,longitude= 92.048107, zoom=4}) => {
   const [viewport, setViewport] = useState({
-    latitude: 21.184006,
-    longitude: 92.048107,
-    zoom: 4,
     bearing: 0,
     pitch: 0,
   });
+
+  useEffect(() => {
+    setViewport({...viewport, zoom, latitude, longitude})
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [latitude, longitude, zoom]);
+
   const [popupInfo, setPopupInfo] = useState(null);
 
   return (
