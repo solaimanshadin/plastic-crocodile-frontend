@@ -18,10 +18,6 @@ Go to the project directory
   cd plastic-crocodile-frontend
 ```
 
-Rename the .env.example to .env
-```bash
-  .env.example > .env
-```
 Install dependencies
 
 ```bash
